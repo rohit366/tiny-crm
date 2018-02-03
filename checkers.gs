@@ -22,7 +22,11 @@ function checkDueActives(token, sheet) {
   if (today.getTime() > start && current < end) {
     title = title + feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " launch announcement";
   } else {
-    title = title + feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " status email update";
+    if (status == "none") {
+      title = title + feature[0].toUpperCase() + feature.substring(1) + " feature email update";
+    } else {
+      title = title + feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " status email update";
+    };
   };
   var comment = "";
   
@@ -32,13 +36,13 @@ function checkDueActives(token, sheet) {
     var current = data[i][6].getTime();
     if (current > start && current < end) {
       if (status == a && data[i][5] == a) {
-        comment = comment + data[i][0] + " - " + status + "\n";
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + status + "\n";
         count = count + 1;
       } else if (status == b && data[i][5] == a && data[i][5] == b) {
-        comment = comment + data[i][0] + " - " + status + "\n";
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + status + "\n";
         count = count + 1;
       } else if (status == r && data[i][5] == a && data[i][5] == b && data[i][5] == r) {
-        comment = comment + data[i][0] + " - " + status + "\n";
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + status + "\n";
         count = count + 1;
       };
     } else if (current > end && current < twoWeek) {
