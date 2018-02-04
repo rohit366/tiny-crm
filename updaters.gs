@@ -7,10 +7,10 @@ function updater(spreadsheet) {
     var sheetName = sheets[i].getName();
     for (j in data) {
       var row = parseInt(j) + 2;
-      var rowStatus = data[j][2];
-      if (rowStatus != sheetName && rowStatus != "") {
+      var rowStage = data[j][2];
+      if (rowStage != sheetName && rowStage != "") {
         var rangeToCopy = sheets[i].getRange(row, 1, 1, lastCol);
-        rangeToCopy.copyTo(spreadsheet.getSheetByName(rowStatus).getRange(spreadsheet.getSheetByName(rowStatus).getLastRow()+1, 1));
+        rangeToCopy.copyTo(spreadsheet.getSheetByName(rowStage).getRange(spreadsheet.getSheetByName(rowStage).getLastRow()+1, 1));
         sheets[i].deleteRow(row);
       };
     };

@@ -1,10 +1,10 @@
-function createTask(title, content, token) {
+function createTask(title, content, projectID, labelIDs, token) {
   var taskURL = "https://beta.todoist.com/API/v8/tasks?token="+token;
   var task = {
     'content': title,
-    'project_id': 2174420378,
+    'project_id': projectID,
     'due_string': 'today',
-    'label_ids': [2149269418,2149274420],
+    'label_ids': labelIDs,
   };
   var taskOptions = {
     'method' : 'post',
