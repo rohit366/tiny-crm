@@ -1,79 +1,45 @@
-function checkDueActives(projectID, labelIDs, token, sheet) {
+function activesCheck(projectID, labelIDs, token, sheet) {
   var settings = sheet.getSheetByName("settings");
   var actives = sheet.getSheetByName("active");
 
-  var a = "alpha";
-  var b = "beta";
-  var r = "release";
+  var today = new Date().getTime();
+  var prior = today - (1000*60*60*24*14);
+
+  var launchStart = settings.getRange(3, 2).getValue().getTime();
+  var launchEnd = launchStart + (1000*60*60*24*14);
 
   var feature = settings.getRange(1, 2).getValue();
   var status = settings.getRange(2, 2).getValue();
-  var start = settings.getRange(3, 2).getValue().getTime();
-  var end = start + (60*60*24*14);
-  var today = new Date();
-  var twoWeek = today.getTime() - (60*60*24*14);
+
+  var title = "";
+  if (today > launchStart && today < launchEnd) {
+    title = "Launch announcement for " + feature + " " + status + " to active leads";
+  } else {
+    if (status == "none") {
+      title = "Update email for " + feature + " to active leads";
+    } else {
+      title = "Update email for " + feature + " " + status + " to active leads";
+    };
+  };
 
   var lastRow = actives.getLastRow();
   var lastCol = actives.getLastColumn() - 1;
 
   var data = actives.getRange(2, 1, lastRow, lastCol).getValues();
 
-  var title = "";
-  if (today.getTime() > start && today.getTime() < end) {
-    title = title + feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " launch announcement";
-  } else {
-    if (status == "none") {
-      title = title + feature[0].toUpperCase() + feature.substring(1) + " feature email update";
-    } else {
-      title = title + feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " status email update";
-    };
-  };
-
   var comment = "";
   var count = 0;
   var statusCol = lastCol - 3;
   var timeCol = lastCol - 2;
+
   for (i in data) {
-    // NOTE: This is the area of "inflexibility" because I have my selections set to the
-    // output (first and second cells in each row plus the status); I'm still thinking of
-    // how best to make this more general/flexibile for library users.
-    var current = data[i][timeCol].getTime();
-    if (current > start && current < end) {
-      // launch update
-      // - collect all falling into the launch period
-      // - inform 
-      
-      
-      
-      
-    } else if (current > end && current < twoWeek) {
-      // general update
-    
-    
+    var current = new Date(data[i][timeCol]).getTime();
+    if (current < prior) {
+      comment = data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
+      count = count + 1;
     };
   };
 
-  return
-
-
-//  for (i in data) {
-//    var current = data[i][6].getTime();
-//    if (current > start && current < end) {
-//      if (status == a && data[i][5] == a) {
-//        comment = comment + data[i][0] + ", " + data[i][1] + " - " + status + "\n";
-//        count = count + 1;
-//      } else if (status == b && data[i][5] == a && data[i][5] == b) {
-//        comment = comment + data[i][0] + ", " + data[i][1] + " - " + status + "\n";
-//        count = count + 1;
-//      } else if (status == r && data[i][5] == a && data[i][5] == b && data[i][5] == r) {
-//        comment = comment + data[i][0] + ", " + data[i][1] + " - " + status + "\n";
-//        count = count + 1;
-//      };
-//    } else if (current > end && current < twoWeek) {
-//      comment = comment + data[i][0] + "\n";
-//      count = count + 1;
-//    };
-//  };
   if (count > 0) {
     createTask(title, comment, projectID, labelIDs, token);
   };
@@ -98,20 +64,20 @@ function signupCheck(projectID, labelIDs, token, sheet) {
     var lastCol = signups.getLastColumn()-1;
     var data = signups.getRange(2, 1, lastRow, lastCol).getValues();
 
-    var title = feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " launch email update";
+    var title = feature[0].toUpperCase() + feature.substring(1) + " feature " + status + " launch email update to existing users";
     var comment = "";
 
     var count = 0;
-    var rowStatus = lastCol - 3;
+    var statusCol = lastCol - 3;
     for (i in data) {
-      if (status == a && data[i][rowStatus] == a) {
-        comment = comment + data[i][0] + " - " + data[i][rowStatus] + "\n";
+      if (status == a && data[i][statusCol] == a) {
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
         count = count + 1;
-      } else if (status == b && data[i][rowStatus] == a || data[i][rowStatus] == b) {
-        comment = comment + data[i][0] + " - " + data[i][rowStatus] + "\n";
+      } else if (status == b && data[i][statusCol] == a || data[i][statusCol] == b) {
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
         count = count + 1;
-      } else if (status == r && data[i][rowStatus] == a || data[i][rowStatus] == b || data[i][rowStatus] == r) {
-        comment = comment + data[i][0] + " - " + data[i][rowStatus] + "\n";
+      } else if (status == r && data[i][statusCol] == a || data[i][statusCol] == b || data[i][statusCol] == r) {
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
         count = count + 1;
       };
     };
