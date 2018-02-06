@@ -14,10 +14,22 @@ Currently, the feature set is relatively simple but I'm open to suggestions/idea
 
 ## Setup
 
+Your spreadsheet will need six tabs: "settings", "leads", "active", "signup", "decline", and "storage".
+
+![Example tabs in the spreadsheet](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-tabs.png)
+
+The "settings" tab will need the A1:B3 range filled in with the information in the image below. "Status" should be a dropdown with "none", "alpha", "beta", and "release" options while "Status date" could be a calendar dropdown.
+
+![Example settings page](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-settings.png)
+
 My spreadsheet currently has 8 columns, a frozen top row with column names and a README note box (making 9 columns across the top). The last three columns of data should be (in this order):
 - "*Status*": contains cells with dropdowns with "alpha", "beta", and "release" options
 - "*Contact date*": contains cells with clickable dropdown calendar
 - "*Stage*": contains cells with dropdowns with "active", "signup", "decline", and "storage" options
+
+![Example for last three columns](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-columns.png)
+
+
 
 ## Usage
 
