@@ -3,6 +3,7 @@ function activesCheck(projectID, labelIDs, token, sheet) {
   var actives = sheet.getSheetByName("active");
 
   var today = new Date().getTime();
+  // Hard coded to two weeks currently
   var prior = today - (1000*60*60*24*14);
 
   var launchStart = settings.getRange(3, 2).getValue().getTime();
@@ -35,7 +36,12 @@ function activesCheck(projectID, labelIDs, token, sheet) {
   for (i in data) {
     var current = new Date(data[i][timeCol]).getTime();
     if (current < prior) {
-      comment = data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
+      // The columns included in the Todoist comment are currently hard coded (known issue)
+      if (data[i][statusCol] == "") {
+        comment = comment + data[i][0] + ", " + data[i][1] + "\n";
+      } else {
+        comment = comment + data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
+      };
       count = count + 1;
     };
   };
@@ -70,6 +76,7 @@ function signupCheck(projectID, labelIDs, token, sheet) {
     var count = 0;
     var statusCol = lastCol - 3;
     for (i in data) {
+      // The columns included in the Todoist comment are currently hard coded (known issue)
       if (status == a && data[i][statusCol] == a) {
         comment = comment + data[i][0] + ", " + data[i][1] + " - " + data[i][statusCol] + "\n";
         count = count + 1;

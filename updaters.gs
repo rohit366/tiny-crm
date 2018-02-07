@@ -1,8 +1,10 @@
 function updater(spreadsheet) {
+  // This assumes that the "settings" sheet is first in the spreadsheet 
   var sheets = spreadsheet.getSheets().slice(1, 6);
   for (i in sheets) {
     var lastRow = sheets[i].getLastRow();
     var lastCol = sheets[i].getLastColumn() - 1;
+    // The three last columns sould be used to hold "Status", "Contact date", and "Stage" information
     var data = sheets[i].getRange(2, lastCol - 2, lastRow - 1, lastCol).getValues();
     var sheetName = sheets[i].getName();
     for (j in data) {
