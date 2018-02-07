@@ -12,7 +12,7 @@ function updater(spreadsheet) {
       var stageCol = data[j][2];
       if (stageCol != sheetName && stageCol != "") {
         var rangeToCopy = sheets[i].getRange(row, 1, 1, lastCol);
-        rangeToCopy.copyTo(spreadsheet.getSheetByName(stageCol).getRange(spreadsheet.getSheetByName(stageCol).getLastRow()+1, 1));
+        rangeToCopy.moveTo(spreadsheet.getSheetByName(stageCol).getRange(spreadsheet.getSheetByName(stageCol).getLastRow()+1, 1));
         sheets[i].deleteRow(row);
       };
     };
