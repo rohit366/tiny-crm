@@ -6,9 +6,9 @@ A small set of Google App Scripts designed to automate prospect and lead managem
 
 Currently, the feature set is relatively simple but I'm open to suggestions/ideas for further expansion (initially within the scope of the spreadsheet itself).
 
-- *kanban board*\*: an automated updater that moves leads to different sheets based on their stage in prospecting
-- *contact updates*\*: logic to look for new launches and leads who are due for an email update
-- *Todoist reminder*: creates a Todoist task based on the token and project ID/label IDs you provide
+- **kanban board**\*: an automated updater that moves leads to different sheets based on their stage in prospecting
+- **contact updates**\*: logic to look for new launches and leads who are due for an email update
+- **Todoist reminder**: creates a Todoist task based on the token and project ID/label IDs you provide
 
 \* These are somewhat inflexible as they are still connected to the layout of my prospect columns but I'm working to make this more general/flexible.
 
@@ -18,12 +18,12 @@ Your spreadsheet will need six tabs: "settings", "leads", "active", "signup", "d
 
 ![Example tabs in the spreadsheet](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-tabs.png)
 
-The "settings" tab will need the A1:B3 range filled in with the information in the image below. "Status" should be a dropdown with "none", "alpha", "beta", and "release" options while "Status date" could be a calendar dropdown.
+The "settings" tab will need the A1:B3 range filled in with the information in the image below. "Release" should be a dropdown with "none", "alpha", "beta", and "production" options while "Release date" could be a calendar dropdown.
 
 ![Example settings page](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-settings.png)
 
 My spreadsheet currently has 8 columns, a frozen top row with column names and a README note box (making 9 columns across the top). The last three columns of data should be (in this order):
-- "*Status*": contains cells with dropdowns with "alpha", "beta", and "release" options
+- "*Release*": contains cells with dropdowns with "alpha", "beta", and "production" options
 - "*Contact date*": contains cells with clickable dropdown calendar
 - "*Stage*": contains cells with dropdowns with "active", "signup", "decline", and "storage" options
 
@@ -42,7 +42,7 @@ function updateTrigger() {
 
 ## Usage
 
-Move various leads (rows) around the spreadsheet by selection different values from the "Stage" column dropdown. As you communicate with users/potential users, set their release type in the "Status" column dropdown and update your last message date in the "Contact date" calendar.
+Move various leads (rows) around the spreadsheet by selection different values from the "Stage" column dropdown. As you communicate with users/potential users, set their release type in the "Release" column dropdown and update your last message date in the "Contact date" calendar.
 
 ## Project status
 
@@ -52,11 +52,11 @@ Move various leads (rows) around the spreadsheet by selection different values f
 - [X] release announcement checker for signed up users
 - [X] Todoist task creator from due leads to contact
 - [ ] automatically set status date based on GitHub tags (research this more)
-- [ ] set spreadsheet status via information in GitHub tags/commits (research this more)
-- [ ] change lead status based on incoming webhooks (e.g. a signup notification)
+- [ ] set spreadsheet release via information in GitHub tags/commits (research this more)
+- [ ] change lead release based on incoming webhooks (e.g. a signup notification)
 
 ### Improvements
 - [ ] helper function to automatically identify project and label IDs for the user
 - [ ] allow users to set which columns are included in Todoist comment contents
 
-PRs are always welcome! :beers:
+**PRs and comments are always welcome!** :beers:

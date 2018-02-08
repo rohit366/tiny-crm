@@ -12,13 +12,13 @@ function createTask(title, content, projectID, labelIDs, token) {
     'payload' : JSON.stringify(task),
     'muteHttpExceptions': true,
   };
-      
+
   var response = UrlFetchApp.fetch(taskURL, taskOptions);
   if (typeof(response) == 'undefined') {
     return;
   };
   var id = JSON.parse(response.getContentText())["id"];
- 
+
   var commentURL = "https://beta.todoist.com/API/v8/comments?token="+token;
   var comment = {
     'task_id': id,
@@ -30,6 +30,6 @@ function createTask(title, content, projectID, labelIDs, token) {
     'payload' : JSON.stringify(comment),
     'muteHttpExceptions': true,
   };
-  
+
   UrlFetchApp.fetch(commentURL, commentOptions);
 };
