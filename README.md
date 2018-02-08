@@ -1,6 +1,6 @@
 # tiny-crm :date: :email: :tada:
 
-A small set of Google App Scripts designed to automate prospect and lead management.
+A small set of Google App Scripts designed to automate prospect and lead management. See [this blog post](https://dev.to/forstmeier/code-driven-business-development--5c4b) for an overview of the release system.
 
 ## Features
 
