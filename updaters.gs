@@ -1,5 +1,5 @@
 function updater(spreadsheet) {
-  // This assumes that the "settings" sheet is first in the spreadsheet
+  // This assumes that the "settings" sheet is first in the spreadsheet 
   var sheets = spreadsheet.getSheets().slice(1, 6);
   for (i in sheets) {
     var lastRow = sheets[i].getLastRow();
