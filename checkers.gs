@@ -14,12 +14,12 @@ function activeCheck(projectID, labelIDs, token, sheet) {
 
   var title = "";
   if (today > releaseStart && today < releaseEnd) {
-    title = feature[0].toUpperCase() + feature.substring(1) + " feature " + release + " release email announcement to existing users";
+    title = feature[0].toUpperCase() + feature.substring(1) + " feature " + release + " release email announcement to active leads";
   } else {
     if (release == "none") {
-      title = feature[0].toUpperCase() + feature.substring(1) + " email update to existing users";
+      title = feature[0].toUpperCase() + feature.substring(1) + " email update to active leads";
     } else {
-      title = feature[0].toUpperCase() + feature.substring(1) + " feature " + release + " release email update to existing users";
+      title = feature[0].toUpperCase() + feature.substring(1) + " feature " + release + " release email update to active leads";
     };
   };
 
