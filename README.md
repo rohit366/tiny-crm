@@ -29,7 +29,7 @@ My spreadsheet currently has 8 columns, a frozen top row with column names and a
 
 ![Example for last three columns](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-columns.png)
 
-I'm still trying to figure out the best way to go about using Google App Scripts but I've built this to be a standalone library so you should be able to follow [these instructions](https://developers.google.com/apps-script/guides/libraries) with MssF0j8A9W0N9oGtP1pzTjHC4WZ97WE-8 as the project key.
+I'm still trying to figure out the best way to go about using Google App Scripts but I've built this to be a standalone library so you should be able to follow [these instructions](https://developers.google.com/apps-script/guides/libraries) with MssF0j8A9W0N9oGtP1pzTjHC4WZ97WE-8 as the project key. I recommend that you turn on "Development mode" when you import the library to be up-to-date with the features I've completed thus far.
 
 In the [container](https://developers.google.com/apps-script/guides/bound) sheet that you want to use it with, write a function to wrap the various functions (except `createTask` which is called by the other functions) like the one below and add it as a trigger under `Edit -> Current project's triggers`. I'd recommend that `updater` and `signupCheck` respond to an `On change` trigger and for `activesCheck` to run via `On time` every day.
 
