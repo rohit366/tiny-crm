@@ -1,13 +1,12 @@
-function activeCheck(projectID, labelIDs, token, sheet) {
+function activeCheck(projectID, labelIDs, checkRange, token, sheet) {
   var settings = sheet.getSheetByName("settings");
   var active = sheet.getSheetByName("active");
 
   var today = new Date().getTime();
-  // Hard-coded to two weeks currently
-  var prior = today - (1000*60*60*24*14);
+  var prior = today - (1000*60*60*24*checkRange);
 
   var releaseStart = settings.getRange(3, 2).getValue().getTime();
-  var releaseEnd = releaseStart + (1000*60*60*24*14);
+  var releaseEnd = releaseStart + (1000*60*60*24*checkRange);
 
   var feature = settings.getRange(1, 2).getValue();
   var release = settings.getRange(2, 2).getValue();
