@@ -58,6 +58,6 @@ Move various leads (rows) around the spreadsheet by selection different values f
 ### Improvements
 - [ ] helper function to automatically identify project and label IDs for the user
 - [ ] allow users to set which columns are included in Todoist comment contents
-- [ ] make reminder window time a user-set variable (currently set to two weeks)
+- [X] make reminder window time a user-set variable (currently set to two weeks)
 
 **PRs and comments are always welcome!** :beers:
