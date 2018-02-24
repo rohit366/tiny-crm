@@ -14,7 +14,7 @@ Currently, the feature set is relatively simple but I'm open to suggestions/idea
 
 ## Setup
 
-Your spreadsheet will need six tabs: "settings", "leads", "active", "signup", "decline", and "storage".
+Your spreadsheet will need six tabs: "settings", "leads", "active", "signup", "decline", and "storage". "settings" will need to be in the first position.
 
 ![Example tabs in the spreadsheet](https://github.com/forstmeier/tiny-crm/blob/master/img/tiny-crm-example-tabs.png)
 
