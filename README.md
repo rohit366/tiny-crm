@@ -54,6 +54,7 @@ Move various leads (rows) around the spreadsheet by selection different values f
 - [ ] automatically set status date based on GitHub tags (research this more)
 - [ ] set spreadsheet release via information in GitHub tags/commits (research this more)
 - [ ] change lead release based on incoming webhooks (e.g. a signup notification)
+- [ ] identify duplicate leads in the first column for each page (highlight cell)
 
 ### Improvements
 - [ ] helper function to automatically identify project and label IDs for the user
