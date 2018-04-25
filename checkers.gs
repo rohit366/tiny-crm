@@ -1,3 +1,19 @@
+function checkReleaseState(projectRelease, rowRelease) {
+  var a = "alpha";
+  var b = "beta";
+  var p = "production";
+  
+  if (projectRelease == a && rowRelease == a) {
+    return true;
+  } else if (projectRelease == b && (rowRelease == a || rowRelease == b)) {
+    return true;
+  } else if (projectRelease == p && (rowRelease == a || rowRelease == b || rowRelease == p)) {
+    return true;
+  };
+  
+  return false;
+}
+
 function activeCheck(projectID, labelIDs, checkRange, token, sheet) {
   var settings = sheet.getSheetByName("settings");
   var active = sheet.getSheetByName("active");
@@ -34,7 +50,7 @@ function activeCheck(projectID, labelIDs, checkRange, token, sheet) {
 
   for (i in data) {
     var current = new Date(data[i][dateCol]).getTime();
-    if (current < prior) {
+    if (current < prior && checkReleaseState(release, data[i][releaseCol])) {
       // The columns included in the Todoist comment are currently hard coded (known issue)
       if (data[i][releaseCol] == "") {
         comment = comment + data[i][0] + ", " + data[i][1] + "\n";
